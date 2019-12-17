@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>注册Yuphia加入我们吧！</title>
+
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
+    <script src="app/lib/jquery/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="app/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/lib/bootstrap/css/bootstrap-theme.css">
+    <script src="app/lib/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+ <style type="text/css">
+    *{
+      margin:0 auto;
+      padding: 0;
+    }
+    body{
+      /*background-color: red;*/
+    }
+    #area{
+      margin: 100px auto;
+      background-color:#ccc;
+      width: 500px;
+      height: 300px;
+    }
+    #center{
+      width: 500px;
+      float: left;
+      margin:90px 80px;
+      font-size: 19px;
+      line-height: 19px;
+      font-family:serif;
+    }
+    #twoBtn{
+      margin-left: 90px;
+    }
+    #emailError,#phoneError{
+      display: inline;
+      font-size:8px;
+      color:red;
+    }
+   </style>
+</head>
+<body>
+<div id="area">
+  <div id="center">
+  <form method="post"> <!-- method="post"地址栏不会显示出输入的信息 -->
+    <div class="form-group">
+    <label for="user">账户：</label>
+    <input type="text" name="user" id="userName">
+    </div>
+
+    <div class="form-group">
+    <label for="password">密码：</label>
+    <input type="password" name="password" id="userPassword">
+    </div>
+
+    <div class="form-group">
+    <label for="email">邮箱：</label>
+    <input type="text" name="email" id="userEmail">
+    <label id="emailError"></label>
+    </div>
+
+    <div class="form-group">
+    <label for="phone" >手机：</label>
+    <input type="text" name="phone" id="userPhone" pattern="^1[3578]\d{9}">
+    <label id="phoneError"></label>
+    </div>
+
+    <div id="twoBtn">
+    <button type="submit" class="btn btn-primary" onclick="enroll()">提交注册</button>
+    </div>
+  </form>
+  </div>
+</div>
+<script type="text/javascript">
+
+  $(function(){ //邮箱验证
+            $("#userEmail").blur(function(){ //失去焦点时
+             // var email=$("#userEmail");
+             var email= $('#userEmail').val();
+             var myreg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+             if(myreg.test(email)){
+              document.getElementById('emailError').innerHTML = '';
+               return (false);
+           }
+           else {
+            document.getElementById('emailError').innerHTML = '邮箱错误';
+           }
+            });
+    });
+
+  $(function(){ //手机号码
+       $("#userPhone").blur(function(){ //失去焦点时
+            var phone=$("#userPhone").val();
+             var phonereg = /^(13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})+\d{8}$/;//13开头，15开头，18开头
+          if(phonereg.test(phone)){
+               document.getElementById('phoneError').innerHTML = '';
+               return false;
+           }else {
+            document.getElementById('phoneError').innerHTML = '电话有误';
+           }
+            });
+     });
+
+  
+//注册界面
+function enroll(){
+        event.preventDefault();
+        var user = $('#userName').val();
+        var password = $('#userPassword').val();
+        var email= $('#userEmail').val();
+        var phone = $('#userPhone').val();
+        // console.log(phone);
+        let enrollData= {
+            'user':user,
+             'password':password,
+             'email':email,
+             'phone':phone
+         }
+      ajax('POST', "http://127.0.0.1:3044/enroll", 'enrollData=' + JSON.stringify(enrollData));
+      // ajax('POST', "http://127.0.0.1:3000/samples/dash-if-reference-player/enroll", 'enrollData=' + JSON.stringify(enrollData));
+      
+
+   }
+
+   function ajax(method, url, val) { 
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      console.log('flag');
+      if(xhr.readyState == 4) {
+        console.log('readyState');
+         if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+              reply = xhr.responseText;
+              console.log(JSON.parse(reply));//{id:45,msg:"momo"}
+              let flag = JSON.parse(reply)
+              if(flag.id > 1){ //success
+                alert("注册成功,请登录吧"+ flag.msg);
+                window.location.href="login.html";
+              } else if(flag.id == 0) { //err
+                alert(flag.msg);
+              }
+
+               } 
+      }
+    };
+
+    xhr.open(method, url, true); 
+    if(val) {
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+    }
+    xhr.send(val);
+}
+
+
+</script>
+</body>
+</html>

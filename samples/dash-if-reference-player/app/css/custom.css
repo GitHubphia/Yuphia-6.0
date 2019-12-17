@@ -1,0 +1,202 @@
+/*video list*/
+.videoList{
+    overflow: scroll;
+    width: 450px;
+    height: 500px;
+    background-color: white;
+    /*background-color:#eee;*/
+
+}
+
+/* right minvideo */
+#minVideo.out {
+    display: block;
+     position:fixed;
+     bottom: 0;
+     right:5px;
+     width:450px;
+     z-index: 9;
+     box-shadow:0px 5px 30px yellow;
+
+ }
+#minVideo.in {
+    background-color: #000000;
+
+}
+
+
+/*video right click*/
+#rightclickmenu{
+    visibility: hidden;
+    background: rgba(30,30,32,0.8);
+    position: absolute;
+    width:240px;
+    z-index: 9999;
+    color:#eee; /*灰色字体颜色*/
+}
+.rightclickfont{
+    padding:8px;
+}
+.contextmenu{
+    padding:5px 8px;
+  }
+
+/*video information panel*/
+#videoMessage {
+    visibility: hidden;
+    background: rgba(28,28,28,0.6);
+    position: absolute;
+    width:550px;
+    left:40px;
+    top:190px;
+    z-index: 9999;
+    color:#fff; /*灰色字体颜色*/
+}
+/*font manage and each padding*/
+.videoMessageFont{
+    /*margin-top: 10px;*/
+    padding: 2px 20px;
+    text-align: left;
+}
+
+/*close video message panel*/
+.closeInfo{
+    float: right;
+    font-size:20px;
+    margin-right: 10px;
+}
+/*video camera  width: 
+height: 150*/
+.camera {
+    float:right;
+    top: 0px;
+    right: 0px;
+}
+#cam{
+    float: right;
+    position:fixed;
+    width:280px;
+    height:200px;
+    top:0px;
+    right:0px;
+    z-index:3;
+}
+/*人脸识别位置*/
+#facemark{
+    position:fixed;
+      top:0px;
+    right:0px;
+    z-index:3;
+}
+/*评论*/
+#comment{
+    border:2px solid rgb(255,178,98);
+    position: relative;
+}
+
+#commentText{
+    background-color:yellow;
+    height:110px;
+    width: 100%;
+    display: block;
+    border: none;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    resize: none;
+    overflow: auto;
+    outline: none;
+}
+
+
+.PostBtn{
+    background-color: rgb(200,210,10);
+    margin-top:8px;
+    float: right;
+    width:100px;
+    height:35px;
+    color: #ff7900;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 17px;
+    cursor: pointer;
+}
+
+#commentTitle{
+    font-size: 20px;
+    color: #2a2a2a;
+    float: left;
+}
+#commentList{
+    margin-top:28px;
+    position: relative; 
+    background-color:white;
+}
+#info{
+    position: relative;
+    margin-top:10px;
+    padding: 0 0 0px 5px;
+    border-bottom: 2px solid rgb(255,178,98);
+}
+#infoText{
+    line-height:25px;
+    margin-bottom:10px;
+    font-size:18px;
+}
+#infomess{
+    width: 100%;
+    overflow: hidden;
+}
+#infomess>#infoTime{
+    float: left;
+    font-size: 17px;
+    color:rgb(200,210,10);
+}
+#infomess>#infoHandle{
+    float: right;
+    font-size:17px;
+    margin-right:5px;
+}
+.infoTop,.infoDown,.infoDel{ 
+    width:25px;
+    height:25px;
+    display:inline-block;
+}
+.infoDel{
+    display:inline;
+}
+#infoHandle>a{
+ color:rgb(200,210,10);
+ text-decoration: none;
+ background:url("../img/aa.jpg") -7px -7px;
+ padding-left:28px;
+ margin-left:28px;}
+#infoHandle>a:nth-child(2){
+    background-position: -41px -6px;
+}
+#infoHandle>a:nth-child(3){
+    background-position: -77px -9px;
+}
+
+/*翻页*/
+
+#commentTitle>a{
+    font-size:18px;
+    color:rgb(200,210,10);
+    width:25px;
+    height:25px;
+    display: inline-block;
+    text-align: center;
+}
+#commentTitle>a:hover{
+
+    background-color: yellow;
+}
+#commentTitle>.page1{
+    background-color: yellow;
+    border:1px solid white;
+}
