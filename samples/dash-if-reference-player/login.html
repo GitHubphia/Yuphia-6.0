@@ -93,15 +93,13 @@
              'password':password,
              'email':email
          }
-         ajax('POST', "http://127.0.0.1:3044/login", 'loginData=' + JSON.stringify(loginData)); //变成字符串发送
+         ajax('POST', "http://192.168.1.104:8004/api/users/login", 'loginData=' + JSON.stringify(loginData)); //变成字符串发送
        }
 
     function ajax(method, url, val) { 
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-      console.log('flag');
         if(xhr.readyState == 4) {
-      console.log('readyState');
       if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
               reply = xhr.responseText;
               // console.log(reply);//字符
@@ -111,7 +109,7 @@
                 setUserCookie(flag.id);
                 alert("成功登陆:"+ flag.id+'号顾客'+ flag.msg);//
                 window.location.href="index.html";
-                 } else if(flag.id == 0) { //err
+                 } else if(flag.code== 0) { //err
                 alert(flag.msg);
               }
                } 
@@ -135,7 +133,6 @@
     exp.setTime(exp.getTime() + exp*2000);
     document.cookie = "userName="+ userName +";expires=" + exp.toGMTString();
     document.cookie = "userId="+userId+ ";expires=" + exp.toGMTString();
-     //document.cookie = "useraddress="+"桂林全州县哦"+ ";expires=" + exp.toGMTString();
     //cookie只能进行这样设置
     }
 </script>

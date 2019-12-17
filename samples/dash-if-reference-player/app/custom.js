@@ -281,8 +281,8 @@ var info = document.cookie.split('; ');//居然因为cookie默认带空格，好
    // console.log(datajsons);
    // console.log(JSON.stringify(datajsons)); 将 JavaScript 对象转换为字符串。
 
- // ajax('POST', "http://192.168.1.104:8004/api/monitor/now/info", 'flowData=' + JSON.stringify(datajsons));
- ajax('POST', "http://127.0.0.1:3044/flow", 'flowData=' + JSON.stringify(datajsons));
+ ajax('POST', "http://192.168.1.104:8004/api/monitor/now/info", 'flowData=' + JSON.stringify(datajsons));
+ // ajax('POST', "http://127.0.0.1:3044/flow", 'flowData=' + JSON.stringify(datajsons));
    },50000);
 
 });
